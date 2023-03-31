@@ -233,6 +233,44 @@ document.addEventListener('keydown', (e) => {
             break;
     }
 });
+const controls = document.getElementById('controls');
+const upControl = document.querySelector('.up');
+const downControl = document.querySelector('.down');
+const leftControl = document.querySelector('.left');
+const rightControl = document.querySelector('.right');
+
+upControl.addEventListener('pointerdown', function() {
+    movePlayer(0, -1);
+});
+
+downControl.addEventListener('pointerdown', function() {
+    movePlayer(0, 1);
+});
+
+leftControl.addEventListener('pointerdown', function() {
+    movePlayer(-1, 0);
+});
+
+rightControl.addEventListener('pointerdown', function() {
+    movePlayer(1, 0);
+});
+
+upControl.addEventListener('pointerup', function() {
+    movePlayer(0, 0);
+});
+
+downControl.addEventListener('pointerup', function() {
+    movePlayer(0, 0);
+});
+
+leftControl.addEventListener('pointerup', function() {
+    movePlayer(0, 0);
+});
+
+rightControl.addEventListener('pointerup', function() {
+    movePlayer(0, 0);
+});
+
 
 // Generate the map, enemies, and loot
 generateMap();
