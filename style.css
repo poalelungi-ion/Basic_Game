@@ -1,0 +1,60 @@
+#game-container {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    border: 5px solid black;
+    margin: 50px auto;
+    background-image: url("ground.jpg");
+}
+
+#player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-image: url("hero.png");
+}
+
+.enemy {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-image: url("enemy.png");
+}
+
+#inventory {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 200px;
+    height: 300px;
+    background-color: gray;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#craft-btn {
+    margin-top: 20px;
+}
+
+.wall {
+    background-image: url("wall.jpg");
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.loot {
+
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-image: url("loot.png");
+
+}
+
