@@ -106,7 +106,7 @@ function checkForLoot() {
             lootItem.parentNode.removeChild(lootItem);
             inventory.innerHTML += '<li>Loot:</li>';
 
-            playerHp += 10;
+            playerHp += 5;
             player.innerHTML = `HP: ${playerHp}`;
         }
     }
@@ -117,7 +117,7 @@ function checkForEnemies() {
         let enemy = enemies[i];
 
         if (enemy.x === playerX && enemy.y === playerY) {
-            enemy.hp = enemy.hp - 10;
+            enemy.hp = enemy.hp - 5;
 
             if (isNaN(enemy.hp) || enemy.hp <= 10) {
                 // remove the enemy from the map
@@ -191,7 +191,7 @@ function moveEnemies() {
 
         // Check if the enemy hits the player
         if (enemy.x === playerX && enemy.y === playerY) {
-            playerHp -= 0;
+            playerHp -= 5;
 
             if (playerHp <= 0) {
                 alert('Game over!');
