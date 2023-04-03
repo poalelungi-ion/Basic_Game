@@ -151,9 +151,9 @@ function checkForEnemies() {
 
                 // check if all enemies are dead
                 if (enemies.length === 0) {
-                    let goToNextPage = confirm("You won! Do you want to go to the next level?");
+                    let goToNextPage = confirm("You won! Now you can save the Your love");
                     if (goToNextPage) {
-                        window.location.href = "next-level.html";
+                        window.location.href = "win.html";
                     }
                 }
 
@@ -163,9 +163,6 @@ function checkForEnemies() {
                 let goToNextPage = confirm("You died! You can now watch the future without you!");
                 if (goToNextPage) {
                     window.location.href = "died.hmtl";
-                }
-                else{
-                    window.location.href = "level2.html";
                 }
             }
 
@@ -226,7 +223,10 @@ function moveEnemies() {
             playerHp -= 4;
 
             if (playerHp <= 0) {
-                alert('Game over!');
+                let goToNextPage = confirm("You died! You can now watch the future without you!");
+                if (goToNextPage) {
+                    window.location.href = "died.hmtl";
+                }
             }
 
             player.innerHTML = `HP: ${playerHp}`;
@@ -308,7 +308,7 @@ rightControl.addEventListener('pointerup', function() {
 generateMap();
 generateEnemies(5);
 generateLoot(2);
-autoGenerateEnemies();
+
 
 // Move the enemies every 500ms
 setInterval(moveEnemies, 500);
