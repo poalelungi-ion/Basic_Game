@@ -52,29 +52,51 @@ function generateEnemies(numEnemies) {
             enemy.innerHTML = `HP: ${enemy.hp}`;
             mapContainer.appendChild(enemy);
             enemies.push({ x: enemyX, y: enemyY, el: enemy });
+
+            // Add event listener to enemy element
+            enemy.addEventListener('click', () => {
+                enemy.hp -= 5;
+                enemy.innerHTML = `HP: ${enemy.hp}`;
+                if (enemy.hp <= 0) {
+                    let lootChance = Math.random();
+                    if (lootChance >= 0.5) {
+                        generateLoot(1, enemyX, enemyY);
+                    }
+                    enemy.remove();
+                    let enemyIndex = enemies.findIndex(enemyObj => enemyObj.el === enemy);
+                    enemies.splice(enemyIndex, 1);
+                    generateEnemies(1);
+                }
+            });
         }
     }
 }
-
 // Generate loot
-function generateLoot(numLoot) {
+function generateLoot(numLoot, x, y) {
     for (let i = 0; i < numLoot; i++) {
-        let lootX = Math.floor(Math.random() * mapWidth);
-        let lootY = Math.floor(Math.random() * mapHeight);
+        let lootX = x || Math.floor(Math.random() * mapWidth);
+        let lootY = y || Math.floor(Math.random() * mapHeight);
 
         if (map[lootY][lootX] !== 'empty') {
             i--;
         } else {
-            let lootItem = document.createElement('div');
-            lootItem.className = 'loot';
-            lootItem.style.top = lootY * tileSize + 'px';
-            lootItem.style.left = lootX * tileSize + 'px';
-            mapContainer.appendChild(lootItem);
-            loot.push({ x: lootX, y: lootY });
+            let lootEl = document.createElement('div');
+            lootEl.className = 'loot';
+            lootEl.style.top = lootY * tileSize + 'px';
+            lootEl.style.left = lootX * tileSize + 'px';
+            mapContainer.appendChild(lootEl);
+            loot.push({ x: lootX, y: lootY, el: lootEl });
         }
     }
 }
 
+// Automatically generate enemies after a certain amount of time
+function autoGenerateEnemies() {
+    setTimeout(() => {
+        generateEnemies(enemies.length + 0.1);
+        autoGenerateEnemies();
+    }, 40000 / (enemies.length + 0.01));
+}
 // Move the player
 function movePlayer(dx, dy) {
     // Check if the player is moving out of bounds or hitting a wall
@@ -106,7 +128,7 @@ function checkForLoot() {
             lootItem.parentNode.removeChild(lootItem);
             inventory.innerHTML += '<li>Loot:</li>';
 
-            playerHp += 5;
+            playerHp += 10;
             player.innerHTML = `HP: ${playerHp}`;
         }
     }
@@ -119,11 +141,13 @@ function checkForEnemies() {
         if (enemy.x === playerX && enemy.y === playerY) {
             enemy.hp = enemy.hp - 5;
 
-            if (isNaN(enemy.hp) || enemy.hp <= 10) {
+            if (isNaN(enemy.hp) || enemy.hp <= 0) {
                 // remove the enemy from the map
                 let enemyEl = enemy.el;
                 enemyEl.parentNode.removeChild(enemyEl);
                 enemies.splice(i, 1);
+                generateLoot(1);
+
 
                 // check if all enemies are dead
                 if (enemies.length === 0) {
@@ -191,7 +215,7 @@ function moveEnemies() {
 
         // Check if the enemy hits the player
         if (enemy.x === playerX && enemy.y === playerY) {
-            playerHp -= 5;
+            playerHp -= 4;
 
             if (playerHp <= 0) {
                 alert('Game over!');
@@ -274,8 +298,9 @@ rightControl.addEventListener('pointerup', function() {
 
 // Generate the map, enemies, and loot
 generateMap();
-generateEnemies(10);
-generateLoot(15);
+generateEnemies(5);
+generateLoot(2);
+autoGenerateEnemies();
 
 // Move the enemies every 500ms
 setInterval(moveEnemies, 500);
