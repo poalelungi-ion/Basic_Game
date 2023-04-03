@@ -93,9 +93,9 @@ function generateLoot(numLoot, x, y) {
 // Automatically generate enemies after a certain amount of time
 function autoGenerateEnemies() {
     setTimeout(() => {
-        generateEnemies(enemies.length + 0.1);
+        generateEnemies(enemies.length + 0.01);
         autoGenerateEnemies();
-    }, 40000 / (enemies.length + 0.01));
+    }, 60000 / (enemies.length + 0.01));
 }
 // Move the player
 function movePlayer(dx, dy) {
@@ -151,16 +151,24 @@ function checkForEnemies() {
 
                 // check if all enemies are dead
                 if (enemies.length === 0) {
-                    // show the win message
-                    alert("You won!");
+                    let goToNextPage = confirm("You won! Do you want to go to the next level?");
+                    if (goToNextPage) {
+                        window.location.href = "next-level.html";
+                    }
+                }
+
+            }
+
+            if (playerHp <= 0) {
+                let goToNextPage = confirm("You died! You can now watch the future without you!");
+                if (goToNextPage) {
+                    window.location.href = "died.hmtl";
+                }
+                else{
+                    window.location.href = "index.html";
                 }
             }
 
-            playerHp -= 1;
-
-            if (playerHp <= 0) {
-                alert("Game over!");
-            }
 
             // Show player's HP on top of the player
             player.innerHTML = `HP: ${playerHp}`;
