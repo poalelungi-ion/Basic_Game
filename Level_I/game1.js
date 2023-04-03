@@ -1,5 +1,5 @@
-const mapWidth = 40;
-const mapHeight = 30;
+const mapWidth = 20;
+const mapHeight = 20;
 const tileSize = 20;
 const player = document.getElementById('player');
 const mapContainer = document.getElementById('map-container');
@@ -153,7 +153,7 @@ function checkForEnemies() {
                 if (enemies.length === 0) {
                     let goToNextPage = confirm("You won! Do you want to go to the next level?");
                     if (goToNextPage) {
-                        window.location.href = "next-2.html";
+                        window.location.href = "level2.html";
                     }
                 }
 
@@ -165,7 +165,7 @@ function checkForEnemies() {
                     window.location.href = "died.hmtl";
                 }
                 else{
-                    window.location.href = "index.html";
+                    window.location.href = "level2.html";
                 }
             }
 
@@ -224,9 +224,11 @@ function moveEnemies() {
         // Check if the enemy hits the player
         if (enemy.x === playerX && enemy.y === playerY) {
             playerHp -= 4;
-
             if (playerHp <= 0) {
-                alert('Game over!');
+                let goToNextPage = confirm("You died! You can now watch the future without you!");
+                if (goToNextPage) {
+                    window.location.href = "died.hmtl";
+                }
             }
 
             player.innerHTML = `HP: ${playerHp}`;

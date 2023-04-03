@@ -165,7 +165,7 @@ function checkForEnemies() {
                     window.location.href = "died.hmtl";
                 }
                 else{
-                    window.location.href = "index.html";
+                    window.location.href = "level2.html";
                 }
             }
 
@@ -226,7 +226,13 @@ function moveEnemies() {
             playerHp -= 4;
 
             if (playerHp <= 0) {
-                alert('Game over!');
+                let goToNextPage = confirm("You died! You can now watch the future without you!");
+                if (goToNextPage) {
+                    window.location.href = "died.hmtl";
+                }
+                else{
+                    window.location.href = "index.html";
+                }
             }
 
             player.innerHTML = `HP: ${playerHp}`;
