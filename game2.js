@@ -1,5 +1,5 @@
-const mapWidth = 40;
-const mapHeight = 30;
+const mapWidth = 25;
+const mapHeight = 25;
 const tileSize = 20;
 const player = document.getElementById('player');
 const mapContainer = document.getElementById('map-container');
@@ -153,7 +153,7 @@ function checkForEnemies() {
                 if (enemies.length === 0) {
                     let goToNextPage = confirm("You won! Do you want to go to the next level?");
                     if (goToNextPage) {
-                        window.location.href = "next-level.html";
+                        window.location.href = "level3.html";
                     }
                 }
 
@@ -162,10 +162,7 @@ function checkForEnemies() {
             if (playerHp <= 0) {
                 let goToNextPage = confirm("You died! You can now watch the future without you!");
                 if (goToNextPage) {
-                    window.location.href = "died.hmtl";
-                }
-                else{
-                    window.location.href = "level2.html";
+                    window.location.href = "index.hmtl";
                 }
             }
 
@@ -228,10 +225,7 @@ function moveEnemies() {
             if (playerHp <= 0) {
                 let goToNextPage = confirm("You died! You can now watch the future without you!");
                 if (goToNextPage) {
-                    window.location.href = "died.hmtl";
-                }
-                else{
-                    window.location.href = "index.html";
+                    window.location.href = "index.hmtl";
                 }
             }
 
@@ -312,10 +306,10 @@ rightControl.addEventListener('pointerup', function() {
 
 // Generate the map, enemies, and loot
 generateMap();
-generateEnemies(5);
+generateEnemies(7);
 generateLoot(2);
 autoGenerateEnemies();
 
 // Move the enemies every 500ms
-setInterval(moveEnemies, 500);
+setInterval(moveEnemies, 300);
 

@@ -5,8 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72afc746-4101-4419-9263-3a0cfd5ada01" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Level_I/game1.js" beforeDir="false" afterPath="$PROJECT_DIR$/Level_I/game1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_I/enemy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_I/game1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_I/ground.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_I/hero.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_I/images.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_I/level1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_I/loot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_I/style1.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_I/wall.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_II/enemy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_II/game2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_II/ground.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_II/hero.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_II/images.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_II/level2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_II/loot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_II/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_II/wall.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_III/enemy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_III/game.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_III/ground.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_III/hero.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_III/images.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_III/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_III/loot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_III/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level_III/wall.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +45,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -37,6 +66,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -44,6 +74,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ionut\Documents\GitHub\Basic_Game" />
+      <recent name="C:\Users\ionut\Documents\GitHub\Basic_Game\Level_I" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -53,7 +89,7 @@
       <option name="presentableId" value="Default" />
       <updated>1680261477764</updated>
       <workItem from="1680261479095" duration="890000" />
-      <workItem from="1680510666368" duration="5174000" />
+      <workItem from="1680510666368" duration="7666000" />
     </task>
     <servers />
   </component>

@@ -153,7 +153,7 @@ function checkForEnemies() {
                 if (enemies.length === 0) {
                     let goToNextPage = confirm("You won! Do you want to go to the next level?");
                     if (goToNextPage) {
-                        window.location.href = "Level_II/level2.html";
+                        window.location.href = "level2.html";
                     }
                 }
 
