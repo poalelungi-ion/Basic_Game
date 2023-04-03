@@ -153,7 +153,7 @@ function checkForEnemies() {
                 if (enemies.length === 0) {
                     let goToNextPage = confirm("You won! Do you want to go to the next level?");
                     if (goToNextPage) {
-                        window.location.href = "next-level.html";
+                        window.location.href = "next-2.html";
                     }
                 }
 
@@ -165,7 +165,7 @@ function checkForEnemies() {
                     window.location.href = "died.hmtl";
                 }
                 else{
-                    window.location.href = "leve2.html";
+                    window.location.href = "index.html";
                 }
             }
 

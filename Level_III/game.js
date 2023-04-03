@@ -165,7 +165,7 @@ function checkForEnemies() {
                     window.location.href = "died.hmtl";
                 }
                 else{
-                    window.location.href = "index.html";
+                    window.location.href = "level2.html";
                 }
             }
 
