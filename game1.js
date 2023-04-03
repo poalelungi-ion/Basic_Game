@@ -162,11 +162,9 @@ function checkForEnemies() {
             if (playerHp <= 0) {
                 let goToNextPage = confirm("You died! You can now watch the future without you!");
                 if (goToNextPage) {
-                    window.location.href = "died.hmtl";
+                    window.location.href = "index.hmtl";
                 }
-                else{
-                    window.location.href = "level2.html";
-                }
+
             }
 
 
@@ -227,7 +225,7 @@ function moveEnemies() {
             if (playerHp <= 0) {
                 let goToNextPage = confirm("You died! You can now watch the future without you!");
                 if (goToNextPage) {
-                    window.location.href = "died.hmtl";
+                    window.location.href = "index.hmtl";
                 }
             }
 
