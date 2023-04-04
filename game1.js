@@ -8,8 +8,8 @@ const weaponInventory = document.getElementById('weapon');
 const lootInventory = document.getElementById('loot');
 const craftBtn = document.getElementById('craft-btn');
 let playerHp = 10;
-let playerX = 0;
-let playerY = 0;
+let playerX = 1;
+let playerY = 1;
 let map = [];
 let enemies = [];
 let loot = [];
@@ -17,20 +17,48 @@ let loot = [];
 
 // Generate the map
 function generateMap() {
+    const mapData = [];
+
+    // Initialize mapData array with empty cells
     for (let y = 0; y < mapHeight; y++) {
-        let row = [];
+        const row = [];
         for (let x = 0; x < mapWidth; x++) {
-            if (Math.random() < 0.2 || (y === Math.floor(mapHeight/2) && x === Math.floor(mapWidth/2))) {
+            row.push(0);
+        }
+        mapData.push(row);
+    }
+
+    // Set starting position
+    let cx = Math.floor(mapWidth / 2);
+    let cy = Math.floor(mapHeight / 2);
+    mapData[cy][cx] = 1;
+
+    // Generate map using recursive backtracking algorithm
+    const stack = [[cx, cy]];
+    while (stack.length > 0) {
+        const [x, y] = stack.pop();
+        const directions = shuffle([[0, -1], [1, 0], [0, 1], [-1, 0]]);
+        for (const [dx, dy] of directions) {
+            const nx = x + dx * 2;
+            const ny = y + dy * 2;
+            if (nx >= 2 && nx < mapWidth - 2 && ny >= 2 && ny < mapHeight - 2 && mapData[ny][nx] === 0) {
+                mapData[y + dy][x + dx] = 1;
+                mapData[ny][nx] = 1;
+                stack.push([nx, ny]);
+            }
+        }
+    }
+
+    // Draw map based on mapData array
+    for (let y = 0; y < mapHeight; y++) {
+        const row = [];
+        for (let x = 0; x < mapWidth; x++) {
+            if (mapData[y][x] === 1) {
                 let wall = document.createElement('div');
                 wall.className = 'wall';
                 wall.style.top = y * tileSize + 'px';
                 wall.style.left = x * tileSize + 'px';
                 mapContainer.appendChild(wall);
-                if (y === 0 || y === mapHeight - 1 || x === 0 || x === mapWidth - 1) {
-                    wall.style.backgroundColor = 'rgb(70, 70, 70)';
-                } else {
-                    wall.style.backgroundColor = 'rgb(100, 100, 100)';
-                }
                 row.push('wall');
             } else {
                 row.push('empty');
@@ -40,7 +68,13 @@ function generateMap() {
     }
 }
 
-
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 
 // Generate enemies
 function generateEnemies(numEnemies) {
