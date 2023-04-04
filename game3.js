@@ -16,24 +16,102 @@ let loot = [];
 
 
 // Generate the map
+// Generate the map
 function generateMap() {
+    // Initialize the map with walls
     for (let y = 0; y < mapHeight; y++) {
         let row = [];
         for (let x = 0; x < mapWidth; x++) {
-            if (Math.random() > 0.8) {
-                row.push('wall');
-                let wall = document.createElement('div');
-                wall.className = 'wall';
-                wall.style.top = y * tileSize + 'px';
-                wall.style.left = x * tileSize + 'px';
-                mapContainer.appendChild(wall);
-            } else {
-                row.push('empty');
-            }
+            row.push('wall');
+            let wall = document.createElement('div');
+            wall.className = 'wall';
+            wall.style.top = y * tileSize + 'px';
+            wall.style.left = x * tileSize + 'px';
+            mapContainer.appendChild(wall);
         }
         map.push(row);
     }
+
+    // Generate the maze
+    let visited = [];
+    for (let y = 0; y < mapHeight; y++) {
+        let row = [];
+        for (let x = 0; x < mapWidth; x++) {
+            row.push(false);
+        }
+        visited.push(row);
+    }
+
+    let start = { x: Math.floor(Math.random() * mapWidth), y: Math.floor(Math.random() * mapHeight) };
+    let stack = [start];
+    visited[start.y][start.x] = true;
+
+    while (stack.length > 0) {
+        let current = stack[stack.length - 1];
+        let neighbors = [];
+
+        // Check north neighbor
+        if (current.y > 1 && !visited[current.y - 2][current.x]) {
+            neighbors.push({ x: current.x, y: current.y - 2 });
+        }
+        // Check east neighbor
+        if (current.x < mapWidth - 2 && !visited[current.y][current.x + 2]) {
+            neighbors.push({ x: current.x + 2, y: current.y });
+        }
+        // Check south neighbor
+        if (current.y < mapHeight - 2 && !visited[current.y + 2][current.x]) {
+            neighbors.push({ x: current.x, y: current.y + 2 });
+        }
+        // Check west neighbor
+        if (current.x > 1 && !visited[current.y][current.x - 2]) {
+            neighbors.push({ x: current.x - 2, y: current.y });
+        }
+
+        if (neighbors.length > 0) {
+            let next = neighbors[Math.floor(Math.random() * neighbors.length)];
+            let wallX = (current.x + next.x) / 2;
+            let wallY = (current.y + next.y) / 2;
+            let wall = document.createElement('div');
+            wall.className = 'wall';
+            wall.style.top = wallY * tileSize + 'px';
+            wall.style.left = wallX * tileSize + 'px';
+            mapContainer.appendChild(wall);
+            map[wallY][wallX] = 'wall';
+
+            visited[next.y][next.x] = true;
+            stack.push(next);
+        } else {
+            stack.pop();
+        }
+    }
+
+    // Remove walls around the edges
+    for (let x = 0; x < mapWidth; x++) {
+        map[0][x] = 'empty';
+        map[mapHeight - 1][x] = 'empty';
+        let topWall = document.querySelector(`.wall[data-x='${x}'][data-y='0']`);
+        if (topWall) {
+            topWall.remove();
+        }
+        let bottomWall = document.querySelector(`.wall[data-x='${x}'][data-y='${mapHeight - 1}']`);
+        if (bottomWall) {
+            bottomWall.remove();
+        }
+    }
+    for (let y = 0; y < mapHeight; y++) {
+        map[y][0] = 'empty';
+        map[y][mapWidth - 1] = 'empty';
+        let leftWall = document.querySelector(`.wall[data-x='0'][data-y='${y}']`);
+        if (leftWall) {
+            leftWall.remove();
+        }
+        let rightWall = document.querySelector(`.wall[data-x='${mapWidth - 1}'][data-y='${y}']`);
+        if (rightWall) {
+            rightWall.remove();
+        }
+    }
 }
+
 
 // Generate enemies
 function generateEnemies(numEnemies) {

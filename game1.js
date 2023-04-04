@@ -20,13 +20,18 @@ function generateMap() {
     for (let y = 0; y < mapHeight; y++) {
         let row = [];
         for (let x = 0; x < mapWidth; x++) {
-            if (Math.random() > 0.8) {
-                row.push('wall');
+            if (Math.random() < 0.2 || (y === Math.floor(mapHeight/2) && x === Math.floor(mapWidth/2))) {
                 let wall = document.createElement('div');
                 wall.className = 'wall';
                 wall.style.top = y * tileSize + 'px';
                 wall.style.left = x * tileSize + 'px';
                 mapContainer.appendChild(wall);
+                if (y === 0 || y === mapHeight - 1 || x === 0 || x === mapWidth - 1) {
+                    wall.style.backgroundColor = 'rgb(70, 70, 70)';
+                } else {
+                    wall.style.backgroundColor = 'rgb(100, 100, 100)';
+                }
+                row.push('wall');
             } else {
                 row.push('empty');
             }
@@ -34,6 +39,8 @@ function generateMap() {
         map.push(row);
     }
 }
+
+
 
 // Generate enemies
 function generateEnemies(numEnemies) {
@@ -162,7 +169,7 @@ function checkForEnemies() {
             if (playerHp <= 0) {
                 let goToNextPage = confirm("You died! You can now watch the future without you!");
                 if (goToNextPage) {
-                    window.location.href = "died.hmtl";
+                    window.location.href = "died.html";
                 }
 
             }
@@ -225,7 +232,7 @@ function moveEnemies() {
             if (playerHp <= 0) {
                 let goToNextPage = confirm("You died! You can now watch the future without you!");
                 if (goToNextPage) {
-                    window.location.href = "died.hmtl";
+                    window.location.href = "index.hmtl";
                 }
             }
 
