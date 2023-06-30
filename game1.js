@@ -236,13 +236,13 @@ function moveEnemies() {
         if (dx > 0) {
             enemy.x--;
         } else if (dx < 0) {
-            enemy.x--;
+            enemy.x++;
         }
 
         if (dy > 0) {
             enemy.y--;
         } else if (dy < 0) {
-            enemy.y--;
+            enemy.y++;
         }
 
         // Check if the enemy hits a wall
